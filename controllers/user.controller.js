@@ -35,11 +35,11 @@ exports.userLogin = async (req, res) => {
   const user = await User.findOne({email})
     
   if(!user) return res.status(404).json({msg: "Bad credentiel"});
-
+    console.log(user)
   const isMatch = await bcrypt.compare(password, user.password);
 
   if(!isMatch) return res.status(404).json({msg: "Bad credentiel"});
-
+    console.log(isMatch)
   try {
     let payload = {
       id : user._id,
@@ -52,4 +52,16 @@ exports.userLogin = async (req, res) => {
     console.log("login error =", error);
     res.status(401).json({msg: "Login user failed"});
   }
+};
+/********************* Get all users ********************** */
+
+exports.getUsers = async (req, res) => {
+    const users = await User.find();
+
+    try {
+      res.status(202).json({users});
+    } catch (error) {
+      console.log("get users failed", error);
+      res.status(402).json({msg: "Fetch users failed"});
+    }
 };
