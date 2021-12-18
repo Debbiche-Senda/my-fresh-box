@@ -14,11 +14,11 @@ connectDB();
 // Routes
 app.use("/api", user);
 
-
+// Define port
 const PORT = process.env.PORT;
 
 
-
+// Server connection
 app.listen(PORT, (err)=>{
     err ? console.log("Server connection failed", err) : console.log(`server connected successfully on PORT ${PORT}`);
 });
