@@ -19,3 +19,35 @@ exports.addOrder = async (req, res)=>{
     }
 };
 
+/********************* Get product******************* */
+
+exports.getProduct = (req, res) =>{
+    const { _id } = req.params;
+    // const order = await Order.findById({ _id });
+    Order.find({_id}).then((order)=>res.status(200).json(order[0])).catch((err) => res.json(err));
+}
+/********************* Get all products ******************* */
+
+exports.getProducts = async (req, res) =>{
+    
+    const orders = await Order.find();
+    try {
+      res.status(200).json({ orders });
+    } catch (error) {
+      console.log("get products failed", error);
+      res.status(403).json({ msg: "get products failed" });
+    }
+}
+
+/******************** Update products ************************* */
+exports.editProduct = async (req, res) =>{
+    let { _id } = req.params;
+    try {
+        await Order.findByIdAndUpdate({ _id }, { $set: { ...req.body } });
+        res.status(203).json({ msg: "Product updated successfully" });
+    } catch (error) {
+        console.log("Product update failed", error);
+    res.status(403).json({ msg: "Product update failed" });
+    }
+
+}
