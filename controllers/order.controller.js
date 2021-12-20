@@ -51,3 +51,17 @@ exports.editProduct = async (req, res) =>{
     }
 
 }
+
+/********************** Delete product *************************** */
+
+exports.deleteProduct = async (req, res) =>{
+    const { _id } = req.params;
+    try {
+       await Order.findByIdAndDelete({ _id }) ;
+       res.status(200).json({ msg: "Product deleted with success" });
+    } catch (error) {
+        console.error("Product delete failed", error);
+    res.status(402).json({ msg: "Product delete failed" });
+        
+    }
+}
