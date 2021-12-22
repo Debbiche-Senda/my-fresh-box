@@ -2,7 +2,8 @@ require("dotenv").config({path: "./config/.env"});
 const express = require('express');
 const connectDB = require("./config/connectDB");
 const user = require("./routes/user");
-const order = require('./routes/order')
+const order = require('./routes/order');
+const admin = require("./routes/admin");
 const app = express();
 
 // Parse data
@@ -15,6 +16,8 @@ connectDB();
 // Routes
 app.use("/api/user", user);
 app.use("/api/order", order);
+app.use("/api/admin", admin);
+
 
 // Define port
 const PORT = process.env.PORT;

@@ -9,7 +9,7 @@ const orderSchema = new mongoose.Schema({
     catégorie : String,
     famille : String,
     description : String,
-    ustenciles : String,
+    ustensiles : String,
     valeur_nutritionnelle : String,
     prix : String,
 });
