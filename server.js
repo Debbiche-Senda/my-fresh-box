@@ -4,6 +4,7 @@ const connectDB = require("./config/connectDB");
 const user = require("./routes/user");
 const order = require('./routes/order');
 const admin = require("./routes/admin");
+const posts = require("./routes/posts");
 const app = express();
 
 // Parse data
@@ -17,6 +18,7 @@ connectDB();
 app.use("/api/user", user);
 app.use("/api/order", order);
 app.use("/api/admin", admin);
+app.use("/api/post", posts);
 
 
 // Define port

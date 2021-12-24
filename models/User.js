@@ -11,7 +11,20 @@ const userSchema = new mongoose.Schema({
         enum : ["user", "admin"],
         default : "user",
     },
+    rating:{
+        type: Number,
+        min: 1,
+        max: 5,
+    },
+    posts:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "post"
+    }],
     password : String ,
+    dateOfCreation:{
+        type: Date,
+        default: Date.now()
+    },
 });
 
-module.exports = User = mongoose.model("User", userSchema);
+module.exports = mongoose.model("User", userSchema);

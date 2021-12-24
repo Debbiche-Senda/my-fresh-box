@@ -18,7 +18,9 @@ exports.userRegister = async (req, res) => {
     newUser.password = hash;
 
     await newUser.save();
-    res.status(201).json({ msg: "Register sucess" });
+
+
+    res.status(201).json({msg : "Register success"});
   } catch (error) {
     console.log(error);
     res.status(401).json({ msg: "Register failed" });
@@ -64,4 +66,19 @@ exports.getUsers = async (req, res) => {
       console.log("get users failed", error);
       res.status(402).json({msg: "Fetch users failed"});
     }
+};
+
+/******************** Get user by ID ********************** */
+
+exports.getUserById = async (req, res) => {
+  const { _id } = req.params;
+  const user = await User.findById(_id).populate("posts")
+
+  try {
+    await
+    res.status(201).json({ msg : "Get user success", user});
+  } catch (error) {
+    console.log(error);
+    res.status(401).json({msg: "Get user failed"});
+  }
 };
