@@ -3,7 +3,7 @@ const {check, validationResult} = require('express-validator');
 
 exports.registerRules = () => [
 check("email", "Invalid email").isEmail(),
-check("password", "At least you need 8 caracters").isLength({min : 8}),
+check("password", "At least you need five caracters").isLength({min : 5}),
 ]
 
 exports.validator = (req, res, next)=>{
